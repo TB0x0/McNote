@@ -1,2 +1,2 @@
-public class grid {
+public class Grid {
 }
