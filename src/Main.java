@@ -33,7 +33,7 @@ public class Main extends Application  {
 
         // Events
         newDoc.setOnAction(e -> {
-            System.out.println("This will start a new document");
+            textArea.setText("");
         });
         openDoc.setOnAction(e -> {
             System.out.println("This will open a document");
