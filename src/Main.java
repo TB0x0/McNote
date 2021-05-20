@@ -5,7 +5,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Menu;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 
 
 public class Main extends Application  {
@@ -36,10 +40,15 @@ public class Main extends Application  {
             textArea.setText("");
         });
         openDoc.setOnAction(e -> {
-            System.out.println("This will open a document");
+            FileChooser openFile = new FileChooser();
+            openFile.setTitle("Open Text File");
+            openFile.showOpenDialog(stage);
         });
         saveDoc.setOnAction(e -> {
-            System.out.println("This will save a document");
+            String oString = textArea.getText();
+            FileChooser openFile = new FileChooser();
+            openFile.setTitle("Save Text File");
+            openFile.showOpenDialog(stage);
         });
         exitDoc.setOnAction(e -> {
             stage.close();
