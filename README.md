@@ -1,2 +1,3 @@
 # McNote
-A notepad project so I can write in dark mode
+A notepad project written in Java. Mainly so I can write stories in a simple darkmode editor.
+
