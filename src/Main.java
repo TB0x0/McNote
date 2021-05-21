@@ -7,10 +7,11 @@ import javafx.scene.control.Menu;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main extends Application  {
     public void start(Stage stage) throws Exception {
@@ -45,10 +46,15 @@ public class Main extends Application  {
             openFile.showOpenDialog(stage);
         });
         saveDoc.setOnAction(e -> {
-            String oString = textArea.getText();
-            FileChooser openFile = new FileChooser();
-            openFile.setTitle("Save Text File");
-            openFile.showOpenDialog(stage);
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+            FileChooser saveFile = new FileChooser();
+            saveFile.getExtensionFilters().add(extFilter);
+            saveFile.setTitle("Save Text File");
+            File sfile = saveFile.showSaveDialog(stage);
+
+            if(sfile != null){
+                FileSaver(textArea.getText(), sfile);
+            }
         });
         exitDoc.setOnAction(e -> {
             stage.close();
@@ -66,5 +72,16 @@ public class Main extends Application  {
 
     public static void main(String[] args) {
         Application.launch(args);
+    }
+
+    private void FileSaver(String text, File sfile){
+        try{
+            FileWriter fw = new FileWriter(sfile);
+            fw.write(text);
+            fw.flush();
+            fw.close();
+        } catch (IOException ioex){
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ioex);
+        }
     }
 }
