@@ -5,12 +5,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Menu;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,7 +47,7 @@ public class Main extends Application  {
             File ofile = openFile.showOpenDialog(stage);
 
             if (ofile != null){
-                textArea.setText(FileReader(ofile));
+                textArea.setText(readFile(ofile));
             }
         });
         saveDoc.setOnAction(e -> {
@@ -60,7 +58,7 @@ public class Main extends Application  {
             File sfile = saveFile.showSaveDialog(stage);
 
             if(sfile != null){
-                FileSaver(textArea.getText(), sfile);
+                writeFile(textArea.getText(), sfile);
             }
         });
         exitDoc.setOnAction(e -> {
@@ -72,6 +70,7 @@ public class Main extends Application  {
         vbox.getChildren().add(textArea);
 
         Scene scene = new Scene(vbox, 600, 600);
+        scene.setFill(Color.web("#000555"));
         stage.setScene(scene);
         stage.show();
 
@@ -81,7 +80,7 @@ public class Main extends Application  {
         Application.launch(args);
     }
 
-    private void FileSaver(String text, File sfile){
+    private void writeFile(String text, File sfile){
         try{
             FileWriter fw = new FileWriter(sfile);
             fw.write(text);
@@ -92,7 +91,29 @@ public class Main extends Application  {
         }
     }
 
-    private void FileReader(File file){
+    private String readFile(File argFile){
+        StringBuilder sBuffer = new StringBuilder();
+        BufferedReader bReader = null;
 
+        try{
+            bReader = new BufferedReader(new FileReader(argFile));
+
+            String text;
+            while (( text = bReader.readLine()) != null){
+                sBuffer.append(text);
+            }
+        }catch (FileNotFoundException fnfex){
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, fnfex);
+        }catch (IOException ioex){
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ioex);
+        }finally {
+            try{
+                bReader.close();
+            }catch (IOException ioex){
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ioex);
+            }
+        }
+
+        return sBuffer.toString();
     }
 }
