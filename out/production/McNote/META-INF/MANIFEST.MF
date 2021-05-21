@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: Main
+Class-Path: McNotev1.0-bin.jar
+

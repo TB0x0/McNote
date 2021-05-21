@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="McNotev1.0">
+    <output-path>$PROJECT_DIR$/out/artifacts/McNotev1_0</output-path>
+    <root id="archive" name="McNotev1.0.jar">
+      <element id="archive" name="McNote.jar">
+        <element id="module-output" name="McNote" />
+      </element>
+    </root>
+  </artifact>
+</component>
