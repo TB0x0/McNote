@@ -9,6 +9,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,8 +43,14 @@ public class Main extends Application  {
         });
         openDoc.setOnAction(e -> {
             FileChooser openFile = new FileChooser();
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+            openFile.getExtensionFilters().add(extFilter);
             openFile.setTitle("Open Text File");
-            openFile.showOpenDialog(stage);
+            File ofile = openFile.showOpenDialog(stage);
+
+            if (ofile != null){
+                textArea.setText(FileReader(ofile));
+            }
         });
         saveDoc.setOnAction(e -> {
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
@@ -83,5 +90,9 @@ public class Main extends Application  {
         } catch (IOException ioex){
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ioex);
         }
+    }
+
+    private void FileReader(File file){
+
     }
 }
