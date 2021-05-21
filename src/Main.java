@@ -101,6 +101,7 @@ public class Main extends Application  {
             String text;
             while (( text = bReader.readLine()) != null){
                 sBuffer.append(text);
+                sBuffer.append("\n");
             }
         }catch (FileNotFoundException fnfex){
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, fnfex);
