@@ -2,9 +2,26 @@
 .text-area .content{
     -fx-background-color: black ;
 }
+.text-area{
+    -fx-text-fill: red ;
+    -fx-prompt-text-fill: red ;
+}
 
 .menu-bar {
     -fx-background-color: black ;
+}
+.menu:hover {
+    -fx-background-color: gray ;
+}
+.menu-item{
+    -fx-background-color: black ;
+}
+.menu-item:hover{
+    -fx-background-color: gray ;
+}
+
+.menu .label {
+    -fx-text-fill: red;
 }
 
 .stage {
