@@ -70,7 +70,7 @@ public class Main extends Application  {
         vbox.getChildren().add(textArea);
 
         Scene scene = new Scene(vbox, 600, 600);
-        scene.setFill(Color.web("#000555"));
+        scene.getStylesheets().add("CustomStyles.css");
         stage.setScene(scene);
         stage.show();
 
