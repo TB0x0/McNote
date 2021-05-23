@@ -5,6 +5,7 @@
 .text-area{
     -fx-text-fill: #9D9797 ;
     -fx-prompt-text-fill: #9D9797 ;
+    -fx-border-color: #151515 ;
 }
 
 .menu-bar {
@@ -26,4 +27,5 @@
 
 .stage {
     -fx-background-color: #151515 ;
+
 }
