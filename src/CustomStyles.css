@@ -1,29 +1,29 @@
 
 .text-area .content{
-    -fx-background-color: black ;
+    -fx-background-color: #151515 ;
 }
 .text-area{
-    -fx-text-fill: red ;
-    -fx-prompt-text-fill: red ;
+    -fx-text-fill: #9D9797 ;
+    -fx-prompt-text-fill: #9D9797 ;
 }
 
 .menu-bar {
-    -fx-background-color: black ;
+    -fx-background-color: #151515 ;
 }
 .menu:hover {
-    -fx-background-color: gray ;
+    -fx-background-color: #3B3939 ;
 }
 .menu-item{
-    -fx-background-color: black ;
+    -fx-background-color: #151515 ;
 }
 .menu-item:hover{
-    -fx-background-color: gray ;
+    -fx-background-color: #3B3939 ;
 }
 
 .menu .label {
-    -fx-text-fill: red;
+    -fx-text-fill: #9D9797;
 }
 
 .stage {
-    -fx-background-color: black ;
+    -fx-background-color: #151515 ;
 }

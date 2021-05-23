@@ -28,7 +28,25 @@ public class Main extends Application  {
         fileMenu.getItems().add(saveDoc);
         fileMenu.getItems().add(exitDoc);
 
+        Menu editMenu = new Menu("Edit");
+        MenuItem cutItem = new MenuItem("Cut");
+        MenuItem copyItem = new MenuItem("Copy");
+        MenuItem pasteItem = new MenuItem("Paste");
+        editMenu.getItems().add(cutItem);
+        editMenu.getItems().add(copyItem);
+        editMenu.getItems().add(pasteItem);
+
+        Menu prefMenu = new Menu("Preferences");
+        MenuItem fontItem = new MenuItem("Font");
+        MenuItem textColor = new MenuItem("Text Color");
+        MenuItem textSize = new MenuItem("Text Size");
+        prefMenu.getItems().add(fontItem);
+        prefMenu.getItems().add(textColor);
+        prefMenu.getItems().add(textSize);
+
         menuBar.getMenus().add(fileMenu);
+        menuBar.getMenus().add(editMenu);
+        menuBar.getMenus().add(prefMenu);
 
         // Text Editor
         TextArea textArea = new TextArea();
