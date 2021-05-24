@@ -20,7 +20,6 @@
 .menu-item:hover{
     -fx-background-color: #3B3939 ;
 }
-
 .menu .label {
     -fx-text-fill: #9D9797;
 }

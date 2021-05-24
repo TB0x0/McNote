@@ -1,9 +1,12 @@
+import com.sun.deploy.util.StringUtils;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Menu;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -15,6 +18,7 @@ import java.util.logging.Logger;
 public class Main extends Application  {
     public void start(Stage stage) throws Exception {
         stage.setTitle("McNote");
+        Clipboard sysClipboard = Clipboard.getSystemClipboard();
 
         // Menu
         MenuBar menuBar = new MenuBar();
@@ -83,12 +87,25 @@ public class Main extends Application  {
             stage.close();
         });
 
+        cutItem.setOnAction(e-> {
+
+        });
+        copyItem.setOnAction(e-> {
+            String selText = textArea.getSelectedText();
+            ClipboardContent clip = new ClipboardContent();
+            clip.putString(selText);
+            sysClipboard.setContent(clip);
+        });
+        pasteItem.setOnAction(e-> {
+
+        });
+
         // Scene
         VBox vbox = new VBox(menuBar);
         vbox.getChildren().add(textArea);
 
         Scene scene = new Scene(vbox, 600, 600);
-        scene.getStylesheets().add("CustomStyles.css");
+        //scene.getStylesheets().add("CustomStyles.css"); Add after v1.1
         stage.setScene(scene);
         stage.show();
 
@@ -135,4 +152,5 @@ public class Main extends Application  {
 
         return sBuffer.toString();
     }
+
 }
