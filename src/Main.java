@@ -97,7 +97,7 @@ public class Main extends Application  {
             sysClipboard.setContent(clip);
         });
         pasteItem.setOnAction(e-> {
-
+            String clipText = sysClipboard.getString();
         });
 
         // Scene
