@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class Main extends Application  {
     public void start(Stage stage) throws Exception {
         stage.setTitle("McNote");
-        Clipboard sysClipboard = Clipboard.getSystemClipboard();
+
 
         // Menu
         MenuBar menuBar = new MenuBar();
@@ -88,16 +88,17 @@ public class Main extends Application  {
         });
 
         cutItem.setOnAction(e-> {
-
+            clipSelectedText(textArea);
+            textArea.replaceSelection("");
         });
         copyItem.setOnAction(e-> {
-            String selText = textArea.getSelectedText();
-            ClipboardContent clip = new ClipboardContent();
-            clip.putString(selText);
-            sysClipboard.setContent(clip);
+            clipSelectedText(textArea);
         });
         pasteItem.setOnAction(e-> {
+            Clipboard sysClipboard = Clipboard.getSystemClipboard();
             String clipText = sysClipboard.getString();
+            int cursorPos = textArea.getCaretPosition();
+            textArea.insertText(cursorPos, clipText);
         });
 
         // Scene
@@ -151,6 +152,14 @@ public class Main extends Application  {
         }
 
         return sBuffer.toString();
+    }
+
+    private void clipSelectedText(TextArea argTextArea){
+        Clipboard sysClipboard = Clipboard.getSystemClipboard();
+        String selText = argTextArea.getSelectedText();
+        ClipboardContent clip = new ClipboardContent();
+        clip.putString(selText);
+        sysClipboard.setContent(clip);
     }
 
 }
