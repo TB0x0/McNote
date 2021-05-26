@@ -8,6 +8,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -36,17 +37,19 @@ public class Main extends Application  {
         MenuItem cutItem = new MenuItem("Cut");
         MenuItem copyItem = new MenuItem("Copy");
         MenuItem pasteItem = new MenuItem("Paste");
-        editMenu.getItems().add(cutItem);
-        editMenu.getItems().add(copyItem);
-        editMenu.getItems().add(pasteItem);
+        editMenu.getItems().addAll(cutItem, copyItem, pasteItem);
 
         Menu prefMenu = new Menu("Preferences");
         MenuItem fontItem = new MenuItem("Font");
         MenuItem textColor = new MenuItem("Text Color");
-        MenuItem textSize = new MenuItem("Text Size");
-        prefMenu.getItems().add(fontItem);
-        prefMenu.getItems().add(textColor);
-        prefMenu.getItems().add(textSize);
+        Menu textSize = new Menu("Text Size");
+        MenuItem subSize1 = new MenuItem("10px");
+        MenuItem subSize2 = new MenuItem("12px");
+        MenuItem subSize3 = new MenuItem("14px");
+        MenuItem subSize4 = new MenuItem("16px");
+        MenuItem subSize5 = new MenuItem("18px");
+        textSize.getItems().addAll(subSize1,subSize2,subSize3,subSize4,subSize5);
+        prefMenu.getItems().addAll(fontItem, textColor, textSize);
 
         menuBar.getMenus().add(fileMenu);
         menuBar.getMenus().add(editMenu);
@@ -99,6 +102,22 @@ public class Main extends Application  {
             String clipText = sysClipboard.getString();
             int cursorPos = textArea.getCaretPosition();
             textArea.insertText(cursorPos, clipText);
+        });
+
+        subSize1.setOnAction(e-> {
+            setFontSize(textArea, 10);
+        });
+        subSize2.setOnAction(e-> {
+            setFontSize(textArea, 12);
+        });
+        subSize3.setOnAction(e-> {
+            setFontSize(textArea, 14);
+        });
+        subSize4.setOnAction(e-> {
+            setFontSize(textArea, 16);
+        });
+        subSize5.setOnAction(e-> {
+            setFontSize(textArea, 18);
         });
 
         // Scene
@@ -160,6 +179,10 @@ public class Main extends Application  {
         ClipboardContent clip = new ClipboardContent();
         clip.putString(selText);
         sysClipboard.setContent(clip);
+    }
+
+    private void setFontSize(TextArea argTextArea, int fontSize){
+        argTextArea.setFont(Font.font(fontSize));
     }
 
 }
